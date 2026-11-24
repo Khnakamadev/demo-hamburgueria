@@ -1,0 +1,60 @@
+.mast { position: fixed; inset: 0 0 auto; }
+.scroll-story { background: var(--coal); }
+.scroll-story.is-playing { min-height: 600vh; min-height: 600svh; }
+.scene {
+  position: sticky;
+  top: 0;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  padding-block: calc(var(--mast-height, 77px) + .75rem) 3.5rem;
+}
+.scene-media, .scene::after {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.scene-media { object-fit: cover; object-position: center; z-index: -2; }
+.scene::after {
+  content: '';
+  z-index: -1;
+  background: linear-gradient(90deg, rgb(18 14 11 / .72), rgb(18 14 11 / .45) 55%, rgb(18 14 11 / .32));
+}
+.scene-panel { max-width: 36rem; }
+.scene-panel h1 span, .scene-price { color: var(--gold); }
+.scene-panel h2 { margin-bottom: 0; }
+.scene-panel p { width: fit-content; max-width: 39ch; margin-top: .9rem; font-size: clamp(1rem, 2vw, 1.25rem); }
+.scene-price { display: block; margin-top: .75rem; font-variant-numeric: tabular-nums; }
+.scene-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.4rem; }
+.scene-actions .outline { background: rgb(18 14 11 / .55); }
+.scene-actions .outline:hover { background: var(--cream); }
+.scene-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 100%;
+  padding: .3rem .75rem;
+  background: rgb(18 14 11 / .65);
+  font-size: .8rem;
+}
+.scene-progress { position: absolute; inset: auto 0 0; height: 3px; background: rgb(246 237 223 / .25); }
+.scene-progress div { height: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; }
+@media (max-width: 680px) {
+  .scene { --mast-height: 100px; text-align: center; }
+  .scene::after { background: linear-gradient(180deg, rgb(18 14 11 / .36), rgb(18 14 11 / .68) 50%, rgb(18 14 11 / .55)); }
+  .scene-panel, .scene-panel p { margin-inline: auto; }
+  .scene-actions { justify-content: center; }
+  .scene-hint { bottom: 4.1rem; }
+}
+@media (max-height: 470px) {
+  .scene { padding-bottom: 1rem; }
+  .scene-panel h1, .scene-panel h2 { font-size: clamp(2rem, 8vmin, 3rem); }
+  .scene-panel p, .scene-actions { margin-top: .5rem; }
+  .scene-hint { bottom: .55rem; }
+}
